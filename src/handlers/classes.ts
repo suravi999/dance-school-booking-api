@@ -1,7 +1,7 @@
 import { PrismaClient } from "../../generated/prisma/client";
 
 export const getAllClasses = async (event) => {
-  // lazy init & cache to avoid multiple clients in dev/hot-reload
+  // lazy init & cache to avoid multiple clients
   const globalAny = globalThis as any;
   if (!globalAny.__prisma) {
     globalAny.__prisma = new PrismaClient();
