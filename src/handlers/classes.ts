@@ -1,7 +1,13 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { PrismaClient } from "../../generated/prisma/client";
 
 export const getAllClasses = async (event) => {
+  // lazy init & cache to avoid multiple clients in dev/hot-reload
+  const globalAny = globalThis as any;
+  if (!globalAny.__prisma) {
+    globalAny.__prisma = new PrismaClient();
+  }
+  const prisma: PrismaClient = globalAny.__prisma;
+
   const type = event.queryStringParameters?.type;
   const classes = await prisma.class.findMany({
     where: type && type !== "any" ? { type } : {},
