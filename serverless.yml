@@ -1,0 +1,17 @@
+service: dance-school-booking-service
+frameworkVersion: '4.21'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+
+functions:
+  getAllClasses:
+    handler: src/handlers/classes.getAllClasses
+    events:
+      - httpApi:
+          path: /classes
+          method: get
