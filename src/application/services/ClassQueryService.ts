@@ -5,7 +5,7 @@ export class ClassQueryService {
   constructor(private classes: IClassRepository) {}
 
   async list(rawType?: string): Promise<ClassViewDto[]> {
-    const filter = rawType && rawType.toLowerCase() !== 'any' ? { type: rawType } : undefined;
+    const filter = rawType && rawType.toLowerCase() !== 'any' ? { type: rawType.toLowerCase() } : undefined;
     const rows = await this.classes.findMany(filter);
     return rows.map(r => ({
       id: r.id,

@@ -10,14 +10,14 @@ provider:
 
 functions:
   getAllClasses:
-    handler: dist/index.listClasses
+    handler: dist/src/index.listClasses
     events:
       - httpApi:
           path: /classes
           method: get
 
   bookClass:
-    handler: dist/index.bookClass
+    handler: dist/src/index.bookClass
     events:
       - httpApi:
           path: /classes/{id}/book

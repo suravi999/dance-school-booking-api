@@ -4,13 +4,13 @@ import { prisma } from './client';
 export class ClassRepositoryPrisma implements IClassRepository {
   async findMany(filter?: ClassFilter): Promise<ClassEntity[]> {
     const where: any = {};
-    if (filter?.type) where.type = { equals: filter.type, mode: 'insensitive' };
+    if (filter?.type) where.type = { equals: filter.type };
     const rows = await prisma.class.findMany({
       where,
       include: { bookings: true },
       orderBy: [{ dayOfWeek: 'asc' }, { startTime: 'asc' }],
     });
-    return rows.map(c => ({
+    return rows.map((c: any) => ({
       id: c.id,
       type: c.type,
       level: c.level,
