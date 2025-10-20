@@ -81,7 +81,7 @@ and only `infrastructure` depends outward (on Prisma/DB).
 
 ### 1 Clone & install
 ```bash
-git clone https://github.com/suravi999/dance-school-booking-api/.git
+git clone https://github.com/suravi999/dance-school-booking-api.git
 cd dance-school-booking-api
 npm install
 ```
