@@ -8,7 +8,9 @@ export const getAllClasses = async (event) => {
   }
   const prisma: PrismaClient = globalAny.__prisma;
 
-  const type = event.queryStringParameters?.type;
+  const rawType = event.queryStringParameters?.type;
+  const type = rawType ? rawType.toLowerCase() : undefined;
+
   const classes = await prisma.class.findMany({
     where: type && type !== "any" ? { type } : {},
     include: { bookings: true },
